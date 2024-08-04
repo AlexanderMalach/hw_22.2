@@ -26,7 +26,7 @@ def render_contacts(request):
     return render(request, "contacts.html", {"latest_products": latest_products})
 
 
-class ProductListView(ListView):
+class ProductListView(ListView, LoginRequiredMixin):
     model = Product
 
     def get_context_data(self, **kwargs):
@@ -43,7 +43,7 @@ class ProductListView(ListView):
         return context_data
 
 
-class ProductDetailView(DetailView):
+class ProductDetailView(DetailView, LoginRequiredMixin):
     model = Product
 
     def get_object(self, queryset=None):
@@ -66,7 +66,7 @@ class ProductCreateView(CreateView, LoginRequiredMixin):
         return super().form_valid(form)
 
 
-class ProductUpdateView(UpdateView):
+class ProductUpdateView(UpdateView, LoginRequiredMixin):
     model = Product
     form_class = ProductForm
     success_url = reverse_lazy("catalog:catalog_list")
@@ -104,7 +104,7 @@ class ProductDeleteView(DeleteView):
     success_url = reverse_lazy("catalog:catalog_list")
 
 
-class BlogListView(ListView):
+class BlogListView(ListView, LoginRequiredMixin):
     model = Blog
 
     def get_queryset(self):
