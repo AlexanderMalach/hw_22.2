@@ -4,8 +4,8 @@
 <div class="album py-5 bg-body-tertiary">
     <div class="container">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {% if user.is_authenticated %}
             {% for product in object_list %}
-           
             <div class="col">
                 <div class="card shadow-sm">
                     <img src="{{ product.photo | media_filter }}">
@@ -29,8 +29,8 @@
                     </div>
                 </div>
             </div>
-            
             {% endfor %}
+            {% endif %}
         </div>
     </div>
 </div>
