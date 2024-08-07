@@ -99,7 +99,7 @@ class ProductUpdateView(UpdateView, LoginRequiredMixin):
             )
 
 
-class ProductDeleteView(DeleteView):
+class ProductDeleteView(DeleteView, LoginRequiredMixin):
     model = Product
     success_url = reverse_lazy("catalog:catalog_list")
 
